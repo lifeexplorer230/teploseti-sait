@@ -7,6 +7,7 @@
 Сравнение по md5 (ETag), удаляет из бакета файлы, которых больше нет локально.
 """
 import hashlib
+import html
 import hmac
 import mimetypes
 import os
@@ -69,7 +70,7 @@ def remote():
         if st != 200:
             raise SystemExit(f'не смог прочитать бакет: {st} {body[:300]}')
         for key, etag in re.findall(r'<Key>(.*?)</Key>.*?<ETag>(.*?)</ETag>', body, re.S):
-            out[key] = etag.replace('&quot;', '').strip('"')
+            out[key] = html.unescape(etag).strip('"')
         m = re.search(r'<NextContinuationToken>(.*?)</NextContinuationToken>', body)
         if not m:
             return out

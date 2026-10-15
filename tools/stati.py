@@ -15,6 +15,7 @@ sitemap.xml, robots.txt. Заодно синхронизирует мету robo
 
 Запуск: python3 tools/stati.py
 Индексация включается одним флагом "index" в tools/site.json.
+Там же: номер счётчика Метрики (metrika) и коды подтверждения Вебмастера и Search Console.
 """
 import html
 import json
@@ -95,6 +96,27 @@ def ru_date(d):
     return f'{d.day} {MES[d.month - 1]} {d.year}'
 
 
+def head_extra():
+    """Метрика и коды подтверждения Вебмастера/Search Console из site.json.
+    Пустые значения — блок пустой. Тот же блок ставится на главную между маркерами."""
+    out = []
+    if CFG.get('yandex_verification'):
+        out.append(f'<meta name="yandex-verification" content="{esc(CFG["yandex_verification"])}">')
+    if CFG.get('google_verification'):
+        out.append(f'<meta name="google-site-verification" content="{esc(CFG["google_verification"])}">')
+    m = str(CFG.get('metrika') or '')
+    if m:
+        out.append(f"""<script>(function(m,e,t,r,i,k,a){{m[i]=m[i]||function(){{(m[i].a=m[i].a||[]).push(arguments)}};
+m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){{if(document.scripts[j].src===r){{return;}}}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)}})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym({m},"init",{{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});
+document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a)ym({m},"reachGoal","call");}});
+document.addEventListener("submit",function(e){{if(e.target.id==="lead-form")ym({m},"reachGoal","lead");}});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/{m}" style="position:absolute;left:-9999px" alt=""></div></noscript>""")
+    return '<!-- head-extra -->' + '\n'.join(out) + '<!-- /head-extra -->'
+
+
 def page(*, title, description, canonical, root, body, jsonld, active_stati=True):
     """root — относительный путь до корня сайта ('../', '../../'): работает и на домене,
     и на GitHub Pages в подпапке."""
@@ -118,6 +140,7 @@ def page(*, title, description, canonical, root, body, jsonld, active_stati=True
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@500&amp;display=swap">
 <style>{STYLE}</style>
 {ld}
+{head_extra()}
 </head>
 <body>
 <header class="hdr"><div class="wrap">
@@ -247,6 +270,11 @@ def build():
     idx = ROOT / 'index.html'
     s = idx.read_text()
     s2 = re.sub(r'<meta name="robots" content="[^"]*">', f'<meta name="robots" content="{ROBOTS}">', s)
+    # Метрика и подтверждения — тот же блок, что в статьях
+    if '<!-- head-extra -->' in s2:
+        s2 = re.sub(r'<!-- head-extra -->.*?<!-- /head-extra -->', lambda _: head_extra(), s2, flags=re.S)
+    else:
+        s2 = s2.replace('</head>', head_extra() + '\n</head>', 1)
     if s2 != s:
         idx.write_text(s2)
 

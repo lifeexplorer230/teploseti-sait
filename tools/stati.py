@@ -59,6 +59,7 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 .body p,.body ul,.body ol{margin:16px 0 0}
 .body li{margin-top:6px}
 .body table{border-collapse:collapse;width:100%;margin-top:18px;font-size:15px;display:block;overflow-x:auto}
+pre{margin-top:18px;padding:16px;background:#F3F5F8;border-radius:8px;overflow-x:auto;font:13px/1.5 'IBM Plex Mono',monospace;white-space:pre}
 .body th,.body td{border:1px solid #E3E7EB;padding:10px 12px;text-align:left;vertical-align:top}
 .body th{background:#F3F5F7}
 .body blockquote{margin:22px 0 0;padding:14px 18px;background:#FFF3EC;border-left:4px solid #C4501A;border-radius:0 8px 8px 0}
@@ -181,7 +182,7 @@ def read(path):
     meta['slug'] = path.stem
     meta['date'] = date.fromisoformat(meta['date'])
     meta['h1'] = meta.get('h1') or meta['title']
-    meta['html'] = markdown.markdown(text, extensions=['tables', 'sane_lists', 'smarty'],
+    meta['html'] = markdown.markdown(text, extensions=['tables', 'sane_lists', 'smarty', 'fenced_code'],
                                      extension_configs={'smarty': {'substitutions': {
                                          'left-double-quote': '«', 'right-double-quote': '»'}}})
     meta['draft'] = meta.get('draft', '').lower() in ('true', 'да', 'yes')

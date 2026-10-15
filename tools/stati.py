@@ -9,6 +9,7 @@ sitemap.xml, robots.txt. Заодно синхронизирует мету robo
     date: 2026-10-15
     h1: Заголовок на странице (если не задан — title)
     lead: Вводный абзац под заголовком
+    related: slug1, slug2  # «Ещё по теме» (иначе — свежие)
     draft: true          # черновик не публикуется
     ---
 Имя файла = адрес: stati/_src/opressovka-teplotrassy.md -> /stati/opressovka-teplotrassy/
@@ -216,7 +217,9 @@ def build():
     for a in pub:
         url = f'{BASE}/stati/{a["slug"]}/'
         root = '../../'
-        others = [o for o in pub if o is not a][:3]
+        by_slug = {o['slug']: o for o in pub}
+        rel = [by_slug[x.strip()] for x in a.get('related', '').split(',') if x.strip() in by_slug and x.strip() != a['slug']]
+        others = (rel + [o for o in pub if o is not a and o not in rel])[:3]
         more = (f'<section class="more"><h2>Ещё по теме</h2><div class="cards">'
                 f'{"".join(card(o, root) for o in others)}</div></section>') if others else ''
         lead = f'<p class="lead">{esc(a["lead"])}</p>' if a.get('lead') else ''

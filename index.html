@@ -23,7 +23,14 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 @media (max-width:900px){.tp-nav{display:none !important}}
 @media (max-width:640px){.tp-hidephone{display:none !important}.tp-callbar{display:flex !important}}
 </style>
-<!-- head-extra --><!-- /head-extra -->
+<!-- head-extra --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(113766262,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a)ym(113766262,"reachGoal","call");});
+document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");});</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/113766262" style="position:absolute;left:-9999px" alt=""></div></noscript><!-- /head-extra -->
 </head>
 <body>
 <div class="tp" style="font-family: 'Manrope', system-ui, sans-serif; color: #16202B; background: #FFFFFF; font-size: 17px; line-height: 1.55; padding-bottom: 0">
@@ -247,11 +254,11 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 <div style="font-size: 14px; color: #5A6573">пн–пт 9:00–18:00 МСК · Telegram · WhatsApp</div>
 </div>
 <form style="flex: 1.3 1 420px; min-width: 0; background: #FFFFFF; border-radius: 16px; padding: 32px; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px" id="lead-form">
-<div><label for="f-name" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Имя</label><input id="f-name" name="name" type="text" autocomplete="name"></div>
-<div><label for="f-phone" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Телефон</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" required="required" minlength="6"></div>
+<div><label for="f-name" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Имя</label><input id="f-name" class="ym-disable-keys" name="name" type="text" autocomplete="name"></div>
+<div><label for="f-phone" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Телефон</label><input id="f-phone" class="ym-disable-keys" name="phone" type="tel" autocomplete="tel" required="required" minlength="6"></div>
 <div><label for="f-type" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Что за объект</label><select id="f-type" name="type"><option>Тепловой пункт (ЦТП / ИТП)</option><option>Теплотрасса</option><option>Водопровод / канализация</option><option>Другое</option></select></div>
 <div><label for="f-file" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Предписание, схема или фото (до 15 МБ)</label><input id="f-file" name="file" type="file" accept=".pdf,.jpg,.jpeg,.png,.heic,.doc,.docx,.xls,.xlsx,.zip" style="padding: 10px"></div>
-<div style="grid-column: 1 / -1"><label for="f-msg" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Коротко о задаче</label><textarea id="f-msg" name="message" rows="3"></textarea><input name="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px"></div>
+<div style="grid-column: 1 / -1"><label for="f-msg" style="display: block; font-size: 14px; font-weight: 600; margin-bottom: 6px">Коротко о задаче</label><textarea id="f-msg" class="ym-disable-keys" name="message" rows="3"></textarea><input name="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px"></div>
 <div style="grid-column: 1 / -1; display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: #5A6573"><input id="f-ok" type="checkbox" required="required" style="width: 20px; min-height: 20px; height: 20px; margin-top: 2px; flex: none"><label for="f-ok">Согласен на обработку персональных данных и их передачу исполнителю для расчёта по <a href="#">политике</a></label></div>
 <div style="grid-column: 1 / -1"><button class="tp-btn" type="submit" style="background: #C4501A; color: #FFFFFF; border: none; font: inherit; font-weight: 700; padding: 16px 24px; border-radius: 8px; min-height: 52px; cursor: pointer; width: 100%">Отправить заявку</button></div>
 <div id="lead-sent" hidden role="status" style="grid-column: 1 / -1; background: #EAF6EE; border-radius: 8px; padding: 14px 16px; font-size: 15px">Заявка получена. Перезвоним в рабочее время: пн–пт 9:00–18:00 МСК.</div>

@@ -1,0 +1,12 @@
+{
+ "url": "https://storage.yandexcloud.net/mafclub-leads",
+ "prefix": "leads-opressuem/",
+ "expires": "2027-10-24T00:48:01Z",
+ "fields": {
+  "Policy": "eyJleHBpcmF0aW9uIjogIjIwMjctMTAtMjRUMDA6NDg6MDFaIiwgImNvbmRpdGlvbnMiOiBbeyJidWNrZXQiOiAibWFmY2x1Yi1sZWFkcyJ9LCBbInN0YXJ0cy13aXRoIiwgIiRrZXkiLCAibGVhZHMtb3ByZXNzdWVtLyJdLCBbInN0YXJ0cy13aXRoIiwgIiRDb250ZW50LVR5cGUiLCAiIl0sIFsiY29udGVudC1sZW5ndGgtcmFuZ2UiLCAxLCAxNTcyODY0MF0sIHsieC1hbXotYWxnb3JpdGhtIjogIkFXUzQtSE1BQy1TSEEyNTYifSwgeyJ4LWFtei1jcmVkZW50aWFsIjogIllDQUpFQm8xbHdnWXduSmJhYXp2eHRPNWUvMjAyNjEwMjQvcnUtY2VudHJhbDEvczMvYXdzNF9yZXF1ZXN0In0sIHsieC1hbXotZGF0ZSI6ICIyMDI2MTAyNFQwMDAwMDBaIn1dfQ==",
+  "X-Amz-Algorithm": "AWS4-HMAC-SHA256",
+  "X-Amz-Credential": "YCAJEBo1lwgYwnJbaazvxtO5e/20261024/ru-central1/s3/aws4_request",
+  "X-Amz-Date": "20261024T000000Z",
+  "X-Amz-Signature": "0f99120a6888f02c57165f5bb5787c06753dfe00bf0e25272b3fe43c00e56b5c"
+ }
+}

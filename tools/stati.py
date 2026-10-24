@@ -114,7 +114,7 @@ k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNo
 (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
 ym({m},"init",{{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a)ym({m},"reachGoal","call");}});
-document.addEventListener("submit",function(e){{if(e.target.id==="lead-form")ym({m},"reachGoal","lead");}});</script>
+document.addEventListener("lead-ok",function(){{ym({m},"reachGoal","lead");}});</script>
 <noscript><div><img src="https://mc.yandex.ru/watch/{m}" style="position:absolute;left:-9999px" alt=""></div></noscript>""")
     return '<!-- head-extra -->' + '\n'.join(out) + '<!-- /head-extra -->'
 

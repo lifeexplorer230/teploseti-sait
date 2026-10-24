@@ -3,7 +3,7 @@ title: Опрессовка системы отопления: какое дав
 description: Опрессовка отопления и тепловой сети по Правилам 2025 года: пробное давление, время выдержки, допустимое падение, порядок работ и какие акты нужны к отопительному сезону.
 date: 2026-10-15
 h1: Опрессовка системы отопления и теплосети: давление, порядок, документы
-related: akt-gidravlicheskih-ispytaniy, gidravlicheskie-ispytaniya-teplovyh-setey, pasport-gotovnosti
+related: opressovka-itp, akt-gidravlicheskih-ispytaniy, gidravlicheskie-ispytaniya-teplovyh-setey
 lead: Опрессовка — гидравлическое испытание системы давлением выше рабочего. Система держит давление без течей — её можно запускать в сезон. Не держит — дефект найден летом, а не в январе.
 ---
 

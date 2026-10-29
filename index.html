@@ -22,6 +22,18 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 .tp-btn2:hover{border-color:#16202B !important;color:#16202B !important}
 @media (max-width:900px){.tp-nav{display:none !important}}
 @media (max-width:640px){.tp-hidephone{display:none !important}.tp-callbar{display:flex !important}}
+.tp-car{position:relative;border-radius:16px;overflow:hidden;background:#0F2235}
+.tp-track{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none}
+.tp-track::-webkit-scrollbar{display:none}
+.tp-slide{margin:0;flex:0 0 100%;position:relative;scroll-snap-align:start}
+.tp-slide img{display:block;width:100%;height:460px;object-fit:cover}
+.tp-slide figcaption{position:absolute;left:16px;bottom:44px;background:rgba(15,34,53,0.88);color:#FFFFFF;border-radius:8px;padding:10px 14px;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.04em}
+.tp-dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:4px}
+.tp-dots button{width:24px;height:24px;border:0;padding:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.tp-dots button::before{content:"";width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5)}
+.tp-dots button[aria-current]::before{background:#FFFFFF}
+@media (max-width:640px){.tp-slide img{height:300px}}
+@media (prefers-reduced-motion:reduce){.tp-track{scroll-behavior:auto}}
 </style>
 <!-- head-extra --><script>(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
@@ -63,10 +75,10 @@ document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");
 <!-- Первый экран -->
 <section id="top" style="background: #F3F5F7; border-bottom: 1px solid #E3E7EB">
 <div style="max-width: 1200px; margin: 0 auto; padding: 72px 24px 64px; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
-<div style="flex: 999 1 520px; min-width: 0">
+<div style="flex: 1 1 480px; min-width: 0">
 <div style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; letter-spacing: 0.08em; color: #5A6573; text-transform: uppercase">Москва и Московская область · работаем с юрлицами</div>
-<h1 style="margin: 18px 0 0; font-size: clamp(34px, 4.6vw, 56px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em">Реконструкция ЦТП и ИТП, перекладка теплотрасс — от обследования до сдачи документации</h1>
-<p style="margin: 22px 0 0; font-size: 19px; color: #3A4552; max-width: 620px">Выезжаем на объект, обследуем, готовим техническое решение и смету. Стоимость согласованного объёма фиксируем в договоре. Дополнительные работы — только после отдельного согласования.</p>
+<h1 style="margin: 18px 0 0; font-size: clamp(34px, 4vw, 52px); line-height: 1.08; font-weight: 800; letter-spacing: -0.02em">Реконструкция ЦТП и ИТП, перекладка теплотрасс — от обследования до сдачи документации</h1>
+<p style="margin: 22px 0 0; font-size: 19px; color: #3A4552; max-width: 620px">Выезжаем на объект, обследуем, готовим техническое решение и смету. Выполняем монтажные и сварочные работы. Стоимость согласованного объёма фиксируем в договоре. Дополнительные работы — только после отдельного согласования.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px">
 <a class="tp-btn" href="#kontakty" style="background: #C4501A; color: #FFFFFF; text-decoration: none; font-weight: 700; padding: 16px 24px; border-radius: 8px; min-height: 52px; display: inline-flex; align-items: center">Обсудить объект</a>
 <a class="tp-btn2" href="tel:+79099774997" style="border: 1.5px solid #9AA5B1; color: #16202B; text-decoration: none; font-weight: 700; padding: 16px 24px; border-radius: 8px; min-height: 52px; display: inline-flex; align-items: center">Позвонить</a>
@@ -77,11 +89,19 @@ document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");
 <div style="padding: 18px 18px 0 0"><div style="font-size: 28px; font-weight: 800">1–2 года</div><div style="font-size: 14px; color: #5A6573">гарантии + опрессовка при сдаче</div></div>
 </div>
 </div>
-<div style="flex: 1 1 380px; min-width: 0">
-<figure style="margin: 0; position: relative; border-radius: 16px; overflow: hidden; background: #0F2235">
-<img src="img/kamera.webp" alt="Тепловая камера после монтажа: трубопроводы в изоляции, задвижки и шаровые краны" style="display: block; width: 100%; height: 420px; object-fit: cover">
-<figcaption style="position: absolute; left: 16px; bottom: 16px; background: rgba(15,34,53,0.88); color: #FFFFFF; border-radius: 8px; padding: 10px 14px; font-family: 'IBM Plex Mono', monospace; font-size: 12px; letter-spacing: 0.04em">ТЕПЛОВАЯ КАМЕРА ПОСЛЕ МОНТАЖА · НАШ ОБЪЕКТ</figcaption>
-</figure>
+<div style="flex: 1 1 440px; min-width: 0">
+<div class="tp-car" aria-roledescription="карусель" aria-label="Наши объекты">
+<div class="tp-track">
+<figure class="tp-slide"><img src="img/kamera.webp" alt="Тепловая камера после монтажа: трубопроводы в изоляции, задвижки и шаровые краны"><figcaption>ТЕПЛОВАЯ КАМЕРА ПОСЛЕ МОНТАЖА · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/tp-obvyazka.webp" alt="Обвязка теплового пункта на рамах после монтажа" loading="lazy"><figcaption>ОБВЯЗКА ТЕПЛОВОГО ПУНКТА · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/kamera-svarka.webp" alt="Сварка узлов трубопроводов в камере до изоляции" loading="lazy"><figcaption>СВАРКА УЗЛОВ В КАМЕРЕ · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/lotok-truby.webp" alt="Предизолированные трубы на опорах в лотковом канале" loading="lazy"><figcaption>ТЕПЛОСЕТЬ В ЛОТКОВОМ КАНАЛЕ · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/tp-uzly.webp" alt="Новые трубопроводы и фланцевые узлы теплового пункта" loading="lazy"><figcaption>РЕКОНСТРУКЦИЯ ТЕПЛОВОГО ПУНКТА · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/kanal-otvody.webp" alt="Отводы и стыки теплотрассы в термоусадочных муфтах" loading="lazy"><figcaption>СТЫКИ ТЕПЛОТРАССЫ В КАНАЛЕ · НАШ ОБЪЕКТ</figcaption></figure>
+<figure class="tp-slide"><img src="img/tp-teploobmenniki.webp" alt="Монтаж обвязки теплообменников" loading="lazy"><figcaption>ОБВЯЗКА ТЕПЛООБМЕННИКОВ · НАШ ОБЪЕКТ</figcaption></figure>
+</div>
+<div class="tp-dots"><button type="button" aria-label="Фото 1" aria-current="true"></button><button type="button" aria-label="Фото 2"></button><button type="button" aria-label="Фото 3"></button><button type="button" aria-label="Фото 4"></button><button type="button" aria-label="Фото 5"></button><button type="button" aria-label="Фото 6"></button><button type="button" aria-label="Фото 7"></button></div>
+</div>
 </div>
 </div>
 </section>
@@ -113,6 +133,7 @@ document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Подготовка и сдача исполнительной документации</li>
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Легализация нагрузок</li>
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Эксплуатация и обслуживание ИТП и ЦТП</li>
+<li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Сварочные работы: обвязка, узлы и трубопроводы теплового пункта</li>
 </ul>
 <a href="#kontakty" style="display: inline-block; margin-top: 24px; font-weight: 700">Обсудить тепловой пункт →</a>
 </div>
@@ -121,6 +142,7 @@ document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");
 <h3 style="margin: 10px 0 0; font-size: 26px; font-weight: 800">Теплотрассы</h3>
 <ul style="margin: 20px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px">
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Перекладка, реконструкция и монтаж наружных тепловых сетей</li>
+<li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Сварочные работы: стыки, врезки и замена участков трубопроводов</li>
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Проектирование и согласование теплотрасс</li>
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Поиск повреждений методом корреляции и трассоискателем</li>
 <li style="display: flex; gap: 12px"><span style="color: #C4501A; font-weight: 800">—</span>Гидравлические испытания и сдача</li>
@@ -318,6 +340,15 @@ f.addEventListener('submit',function(e){
  .finally(function(){btn.disabled=false;btn.textContent=t;});
 });
 })();
+</script>
+<script>
+(function(){var c=document.querySelector('.tp-car');if(!c)return;var t=c.querySelector('.tp-track'),d=c.querySelectorAll('.tp-dots button'),n=d.length,i=0,timer;
+function go(k){i=(k+n)%n;t.scrollTo({left:i*t.clientWidth});}
+d.forEach(function(b,k){b.addEventListener('click',function(){go(k);restart();});});
+t.addEventListener('scroll',function(){var k=Math.round(t.scrollLeft/t.clientWidth);if(k!==i)i=k;d.forEach(function(b,j){if(j===k)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');});},{passive:true});
+function restart(){clearInterval(timer);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)timer=setInterval(function(){go(i+1);},4500);}
+c.addEventListener('mouseenter',function(){clearInterval(timer);});c.addEventListener('mouseleave',restart);t.addEventListener('touchstart',function(){clearInterval(timer);},{passive:true});
+restart();})();
 </script>
 </body>
 </html>

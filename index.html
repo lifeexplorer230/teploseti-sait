@@ -406,5 +406,6 @@ function restart(){clearInterval(timer);if(!matchMedia('(prefers-reduced-motion:
 c.addEventListener('mouseenter',function(){clearInterval(timer);});c.addEventListener('mouseleave',restart);t.addEventListener('touchstart',function(){clearInterval(timer);},{passive:true});
 restart();})();
 </script>
+<script>/* Ссылка из рекламы ?blok=<id> — открыть сразу нужный блок (метки UTM остаются в адресе для формы) */(function(){try{var b=new URLSearchParams(location.search).get("blok");if(!b||!/^[a-z-]+$/.test(b))return;var go=function(){var e=document.getElementById(b);if(e)e.scrollIntoView();};if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",go);else go();}catch(e){}})();</script>
 </body>
 </html>

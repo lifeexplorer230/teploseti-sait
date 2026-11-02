@@ -47,6 +47,7 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 .nav a{color:#3A4552;text-decoration:none}.nav a.on{color:#C4501A}
 .hdr-r{margin-left:auto;display:flex;align-items:center;gap:18px}
 .ph{text-align:right;line-height:1.3}.ph a{color:#16202B;font-weight:800;font-size:18px;text-decoration:none}.ph div{font-size:13px;color:#5A6573}
+.ph div a{font-size:13px;font-weight:600;color:#C4501A;text-decoration:underline}
 .btn{background:#C4501A;color:#FFFFFF !important;text-decoration:none;font-weight:700;font-size:15px;padding:12px 18px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
 .btn:hover{background:#9E3F12}
 .crumbs{font-size:14px;color:#5A6573;padding-top:28px}.crumbs a{color:#5A6573}
@@ -99,8 +100,8 @@ def ru_date(d):
 
 
 def head_extra():
-    """Метрика и коды подтверждения Вебмастера/Search Console из site.json.
-    Пустые значения — блок пустой. Тот же блок ставится на главную между маркерами."""
+    """Метрика, метки рекламы и коды подтверждения Вебмастера/Search Console из site.json.
+    Тот же блок ставится на главную между маркерами."""
     out = []
     if CFG.get('yandex_verification'):
         out.append(f'<meta name="yandex-verification" content="{esc(CFG["yandex_verification"])}">')
@@ -114,8 +115,16 @@ k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNo
 (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
 ym({m},"init",{{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true}});
 document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a)ym({m},"reachGoal","call");}});
+document.addEventListener("click",function(e){{var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/"]');if(a)ym({m},"reachGoal","messenger");}});
 document.addEventListener("lead-ok",function(){{ym({m},"reachGoal","lead");}});</script>
 <noscript><div><img src="https://mc.yandex.ru/watch/{m}" style="position:absolute;left:-9999px" alt=""></div></noscript>""")
+    # Метки рекламы: заход с utm/yclid запоминаем (вкладка + 30 дней), форма берёт их через opUtm(),
+    # даже если человек ушёл со страницы входа (статья -> главная) или вернулся на следующий день
+    out.append(r"""<script>(function(){try{var q=location.search.replace(/^\?/,"");
+if(/(^|&)(utm_|yclid=)/.test(q)){var v=JSON.stringify({q:q.slice(0,300),t:Date.now()});sessionStorage.setItem("op_utm",v);localStorage.setItem("op_utm",v);}}catch(e){}})();
+window.opUtm=function(){var q=location.search.replace(/^\?/,"");try{if(/(^|&)(utm_|yclid=)/.test(q))return q.slice(0,300);
+var s=sessionStorage.getItem("op_utm")||localStorage.getItem("op_utm");if(!s)return q;var o=JSON.parse(s);
+if(Date.now()-o.t>30*864e5)return q;return o.q;}catch(e){return q;}};</script>""")
     return '<!-- head-extra -->' + '\n'.join(out) + '<!-- /head-extra -->'
 
 
@@ -151,7 +160,7 @@ def page(*, title, description, canonical, root, body, jsonld, active_stati=True
 <a href="{root}#uslugi">Услуги</a><a href="{root}#etapy">Как работаем</a><a href="{root}#obekty">Объекты</a>
 <a href="{root}stati/"{' class="on"' if active_stati else ''}>Статьи</a><a href="{root}#kontakty">Контакты</a>
 </nav>
-<div class="hdr-r"><div class="ph"><a href="tel:{pt}">{p}</a><div>{hrs}</div></div>
+<div class="hdr-r"><div class="ph"><a href="tel:{pt}">{p}</a><div>{hrs} · <a href="https://t.me/+79099774997" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/79099774997?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20opressuem.ru.%20%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%3A%20" target="_blank" rel="noopener">WhatsApp</a></div></div>
 <a class="btn" href="{root}#kontakty">Обсудить объект</a></div>
 </div></header>
 {body}

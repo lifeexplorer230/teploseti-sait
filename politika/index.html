@@ -25,6 +25,7 @@ a{color:#C4501A}a:hover{color:#9E3F12}
 .nav a{color:#3A4552;text-decoration:none}.nav a.on{color:#C4501A}
 .hdr-r{margin-left:auto;display:flex;align-items:center;gap:18px}
 .ph{text-align:right;line-height:1.3}.ph a{color:#16202B;font-weight:800;font-size:18px;text-decoration:none}.ph div{font-size:13px;color:#5A6573}
+.ph div a{font-size:13px;font-weight:600;color:#C4501A;text-decoration:underline}
 .btn{background:#C4501A;color:#FFFFFF !important;text-decoration:none;font-weight:700;font-size:15px;padding:12px 18px;border-radius:8px;min-height:44px;display:inline-flex;align-items:center}
 .btn:hover{background:#9E3F12}
 .crumbs{font-size:14px;color:#5A6573;padding-top:28px}.crumbs a{color:#5A6573}
@@ -68,8 +69,14 @@ k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNo
 (window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
 ym(113766262,"init",{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
 document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href^="tel:"]');if(a)ym(113766262,"reachGoal","call");});
+document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="t.me/"]');if(a)ym(113766262,"reachGoal","messenger");});
 document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");});</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/113766262" style="position:absolute;left:-9999px" alt=""></div></noscript><!-- /head-extra -->
+<noscript><div><img src="https://mc.yandex.ru/watch/113766262" style="position:absolute;left:-9999px" alt=""></div></noscript>
+<script>(function(){try{var q=location.search.replace(/^\?/,"");
+if(/(^|&)(utm_|yclid=)/.test(q)){var v=JSON.stringify({q:q.slice(0,300),t:Date.now()});sessionStorage.setItem("op_utm",v);localStorage.setItem("op_utm",v);}}catch(e){}})();
+window.opUtm=function(){var q=location.search.replace(/^\?/,"");try{if(/(^|&)(utm_|yclid=)/.test(q))return q.slice(0,300);
+var s=sessionStorage.getItem("op_utm")||localStorage.getItem("op_utm");if(!s)return q;var o=JSON.parse(s);
+if(Date.now()-o.t>30*864e5)return q;return o.q;}catch(e){return q;}};</script><!-- /head-extra -->
 </head>
 <body>
 <header class="hdr"><div class="wrap">
@@ -78,7 +85,7 @@ document.addEventListener("lead-ok",function(){ym(113766262,"reachGoal","lead");
 <a href="../#uslugi">Услуги</a><a href="../#etapy">Как работаем</a><a href="../#obekty">Объекты</a>
 <a href="../stati/">Статьи</a><a href="../#kontakty">Контакты</a>
 </nav>
-<div class="hdr-r"><div class="ph"><a href="tel:+79099774997">+7 909 977-49-97</a><div>пн–пт 9:00–18:00 МСК</div></div>
+<div class="hdr-r"><div class="ph"><a href="tel:+79099774997">+7 909 977-49-97</a><div>пн–пт 9:00–18:00 МСК · <a href="https://t.me/+79099774997" target="_blank" rel="noopener">Telegram</a> · <a href="https://wa.me/79099774997?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%9F%D0%B8%D1%88%D1%83%20%D1%81%20%D1%81%D0%B0%D0%B9%D1%82%D0%B0%20opressuem.ru.%20%D0%92%D0%BE%D0%BF%D1%80%D0%BE%D1%81%20%D0%BF%D0%BE%20%D0%BE%D0%B1%D1%8A%D0%B5%D0%BA%D1%82%D1%83%3A%20" target="_blank" rel="noopener">WhatsApp</a></div></div>
 <a class="btn" href="../#kontakty">Обсудить объект</a></div>
 </div></header>
 <main>

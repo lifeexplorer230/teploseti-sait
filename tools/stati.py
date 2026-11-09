@@ -290,8 +290,15 @@ def build():
         s2 = re.sub(r'<!-- head-extra -->.*?<!-- /head-extra -->', lambda _: head_extra(), s2, flags=re.S)
     else:
         s2 = s2.replace('</head>', head_extra() + '\n</head>', 1)
+    # разметка главной (LocalBusiness + FAQPage из блока «Частые вопросы») — #237, 09.11.2026
+    ld = glavnaya_ld(s2)
+    if '<!-- ld-glavnaya -->' in s2:
+        s2 = re.sub(r'<!-- ld-glavnaya -->.*?<!-- /ld-glavnaya -->', lambda _: ld, s2, flags=re.S)
+    else:
+        s2 = s2.replace('</head>', ld + '\n</head>', 1)
     if s2 != s:
         idx.write_text(s2)
+    (ROOT / 'llms.txt').write_text(llms_txt(pub))
 
     print(f'статей: {len(pub)} опубликовано, {len(arts) - len(pub)} черновиков; robots: {ROBOTS}')
 
@@ -304,6 +311,48 @@ ORG = {
     'addr': '143025, Московская обл., г. Одинцово, с. Немчиновка, ул. Связистов, д. 6, кв. 304',
     'email': 'gidrosvera@yandex.ru',
 }
+
+
+def glavnaya_ld(html):
+    """JSON-LD главной: компания (адрес — без улицы и квартиры, работаем по Москве и МО) и FAQPage.
+    Вопросы и ответы берутся из <details> на самой странице — разметка не расходится с текстом."""
+    faq = []
+    for q, a in re.findall(r'<summary[^>]*>(.*?)<span class="tp-plus".*?</summary>\s*<p[^>]*>(.*?)</p>', html, re.S):
+        q, a = (re.sub(r'<[^>]+>', '', x).strip() for x in (q, a))
+        faq.append({'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}})
+    biz = {'@context': 'https://schema.org', '@type': 'HomeAndConstructionBusiness',
+           'name': 'Опрессуем.ru', 'legalName': ORG['name'], 'taxID': ORG['inn'], 'url': BASE + '/',
+           'telephone': CFG['phone'], 'email': ORG['email'], 'image': BASE + '/img/kamera.webp',
+           'address': {'@type': 'PostalAddress', 'postalCode': '143025', 'addressLocality': 'Одинцово',
+                       'addressRegion': 'Московская область', 'addressCountry': 'RU'},
+           'areaServed': [{'@type': 'City', 'name': 'Москва'}, {'@type': 'State', 'name': 'Московская область'}],
+           'openingHours': 'Mo-Fr 09:00-18:00',
+           'description': 'Монтаж, реконструкция и обслуживание ИТП и ЦТП, узлы учёта тепловой энергии, '
+                          'опрессовка и гидравлические испытания, ремонт и перекладка теплотрасс в Москве и области.'}
+    out = [biz] + ([{'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': faq}] if faq else [])
+    return '<!-- ld-glavnaya -->' + '\n'.join(
+        f'<script type="application/ld+json">{json.dumps(j, ensure_ascii=False)}</script>' for j in out) + '<!-- /ld-glavnaya -->'
+
+
+def llms_txt(pub):
+    """llms.txt — краткая карта сайта для ИИ-поисковиков (формат llmstxt.org)."""
+    st = '\n'.join(f'- [{a["h1"]}]({BASE}/stati/{a["slug"]}/): {a["description"]}' for a in pub)
+    return f"""# Опрессуем.ru
+
+> Подрядчик по тепловым пунктам и наружным тепловым сетям в Москве и Московской области: монтаж, реконструкция и обслуживание ИТП и ЦТП, узлы учёта тепловой энергии, опрессовка и гидравлические испытания, ремонт и перекладка теплотрасс, водопровод и канализация, диагностика и аварийный ремонт. Работаем с юрлицами: управляющие компании, ТСЖ, эксплуатация зданий.
+
+Исполнитель — {ORG['name']}, ИНН {ORG['inn']}, ОГРН {ORG['ogrn']}. Телефон {CFG['phone']}, {CFG['hours']}. Работаем с НДС, СРО и лицензии под виды работ. Цену называем после осмотра объекта или по документам (предписание, схема).
+
+## Основное
+
+- [Главная: услуги, как работаем, документы, заявка]({BASE}/)
+- [Статьи о ЦТП, ИТП и теплотрассах]({BASE}/stati/)
+- [Политика обработки персональных данных]({BASE}/politika/)
+
+## Статьи
+
+{st}
+"""
 
 
 def politika():
